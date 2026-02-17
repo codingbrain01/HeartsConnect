@@ -23,28 +23,47 @@
     <div class="container">
         <!-- Animated Heart Icon -->
         <div class="heart-container">
-            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="url(#heartGradient)">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="url(#heartGradient)">
                 <defs>
                     <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
                         <stop offset="100%" style="stop-color:#fec5e5;stop-opacity:1" />
                     </linearGradient>
-                    <filter>
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+                        <!-- Create multiple glow layers for smooth heart-shaped effect -->
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur3" />
+
+                        <!-- Blend the layers -->
+                        <feBlend in="blur1" in2="blur2" mode="normal" result="blend1" />
+                        <feBlend in="blend1" in2="blur3" mode="normal" result="allBlurs" />
+
+                        <!-- Add shadow -->
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="shadowBlur" />
+                        <feOffset in="shadowBlur" dx="0" dy="6" result="shadowOffset" />
+                        <feComponentTransfer in="shadowOffset" result="shadow">
+                            <feFuncA type="linear" slope="0.3" />
+                        </feComponentTransfer>
+
+                        <!-- Combine everything -->
                         <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="shadow" />
+                            <feMergeNode in="allBlurs" />
+                            <feMergeNode in="SourceGraphic" />
                         </feMerge>
                     </filter>
                 </defs>
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                <path
+                    d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454 C30,20.335,16,28.261,16,28.261z"
+                    filter="url(#glow)" />
             </svg>
             <!-- Floating hearts animation -->
             <div class="floating-heart" style="--delay: 0s; --x: -30px;"></div>
             <div class="floating-heart" style="--delay: 0.5s; --x: 30px;"></div>
             <div class="floating-heart" style="--delay: 1s; --x: 0px;"></div>
         </div>
-        
+
         <!-- Brand Name with enhanced styling -->
         <div class="brand-wrapper">
             <h1>
@@ -52,7 +71,7 @@
             </h1>
             <div class="brand-underline"></div>
         </div>
-        
+
         <!-- Enhanced Subtitle -->
         <p class="subtitle">
             <span class="subtitle-line">Where Hearts Meet</span>
@@ -72,18 +91,20 @@
                 <span class="badge-label">4.9 Rating</span>
             </div>
         </div>
-        
+
         <div class="download-buttons">
-            <a href="downloads/HeartsConnect Setup 4.1.0.exe" class="download-btn btn-windows" download>
+            <a href="downloads/HeartsConnect-Setup.exe" class="download-btn btn-windows" download>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                    <path
+                        d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
                 </svg>
                 Download for Windows
             </a>
-            
-            <a href="downloads/HeartsConnect Setup 4.1.0.exe" class="download-btn btn-mac" download>
+
+            <a href="downloads/HeartsConnect-Setup.dmg" class="download-btn btn-mac" download>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    <path
+                        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
                 Download for macOS
             </a>
@@ -92,20 +113,23 @@
         <!-- Trust Indicators -->
         <div class="trust-indicators">
             <div class="indicator">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
                 Secure & Private
             </div>
             <div class="indicator">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
                 Free to Use
             </div>
             <div class="indicator">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -113,25 +137,51 @@
                 Instant Setup
             </div>
         </div>
-
+        
         <!-- Live User Counter -->
         <p class="live-users">
             <span class="pulse-dot"></span>
             <span class="live-count" id="userCount">1,247</span> people finding love right now
         </p>
+
+        <!-- Installation Instructions (Always Visible) -->
+        <div class="warning-box" style="margin-top: 15px;">
+            <strong>⚠️ Windows SmartScreen Warning</strong><br><br>
+
+            <p><strong>This is normal!</strong> Windows will show a security warning because this app is not
+                code-signed.</p>
+
+            <p style="margin-top: 15px;">
+                Why? Code signing certificates cost $300+/year. This app is safe but unverified by
+                Microsoft.
+            </p>
+
+            <p><strong>To install:</strong></p>
+            <ol style="text-align: left; margin-left: 40px;">
+                <li>Click <strong>"More info"</strong></li>
+                <img src="./assets/images/step1.png" alt="Installation Guide Step 1">
+                <li>Click <strong>"Run anyway"</strong></li>
+                <img src="./assets/images/step2.png" alt="Installation Guide Step 2">
+            </ol>
+
+            <p style="margin-top: 15px;">
+                May you find your one true love.
+            </p>
+        </div>
+
     </div>
 
     <script>
         // Animate user count on page load
         const userCountElement = document.getElementById('userCount');
         let currentCount = 1247;
-        
+
         function updateUserCount() {
             const change = Math.floor(Math.random() * 5) - 2;
             currentCount = Math.max(1200, Math.min(1300, currentCount + change));
             userCountElement.textContent = currentCount.toLocaleString();
         }
-        
+
         setInterval(updateUserCount, 3000);
     </script>
 </body>
