@@ -1,0 +1,483 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Image */
+.bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/couple-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .bg-image {
+        background-position: center 20%;
+    }
+}
+
+/* Pink romantic overlay */
+.overlay-pink {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(131, 24, 67, 0.5) 0%,
+        rgba(159, 18, 57, 0.4) 50%,
+        rgba(124, 45, 18, 0.5) 100%
+    );
+    z-index: 2;
+}
+
+/* Dark bottom overlay */
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, 
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: 3;
+}
+
+/* Content */
+.container {
+    text-align: center;
+    padding: 40px;
+    max-width: 700px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Enhanced Heart Animation */
+.heart-container {
+    position: relative;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+.heart-icon {
+    width: 100px;
+    height: 100px;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.4));
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(0.95);
+    }
+    20% {
+        transform: scale(1.05);
+    }
+    30% {
+        transform: scale(1);
+    }
+}
+
+/* Floating hearts */
+.floating-heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    left: 50%;
+    opacity: 0;
+    animation: floatUp 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.floating-heart::before {
+    content: "❤";
+    font-size: 20px;
+    color: rgba(255, 182, 193, 0.8);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate(var(--x), 0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), -100px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Brand Wrapper */
+.brand-wrapper {
+    margin-bottom: 24px;
+}
+
+/* Enhanced Brand Name */
+h1 {
+    font-size: 72px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.brand-hearts {
+    background: linear-gradient(135deg, #ff6b9d 0%, #fec5e5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.4));
+}
+
+.brand-connect {
+    color: white;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Brand underline */
+.brand-underline {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b9d 0%, #fec5e5 100%);
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 107, 157, 0.5);
+}
+
+/* Enhanced Subtitle */
+.subtitle {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 40px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.subtitle-line {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.subtitle-divider {
+    color: rgba(255, 182, 193, 0.8);
+    font-size: 8px;
+}
+
+/* Trust Badge */
+.trust-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    padding: 20px 40px;
+    border-radius: 60px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 48px;
+    max-width: fit-content;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-number {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff6b9d 0%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.badge-stars {
+    font-size: 22px;
+    color: #fbbf24;
+    text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.badge-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-divider {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(180deg, transparent, #e5e7eb, transparent);
+}
+
+/* Download Buttons */
+.download-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 44px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s;
+    min-width: 270px;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.download-btn:hover::before {
+    left: 100%;
+}
+
+.btn-windows {
+    background: linear-gradient(135deg, #0078d4 0%, #1e90ff 100%);
+    box-shadow: 0 8px 24px rgba(0, 120, 212, 0.5);
+}
+
+.btn-windows:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 120, 212, 0.6);
+}
+
+.btn-mac {
+    background: linear-gradient(135deg, #555555 0%, #333333 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.btn-mac:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Trust Indicators */
+.trust-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator svg {
+    color: #10b981;
+    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.5));
+}
+
+/* Live Users */
+.live-users {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    max-width: fit-content;
+    margin: 0 auto;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    }
+}
+
+.live-count {
+    font-weight: 800;
+    color: #10b981;
+    text-shadow: 0 2px 4px rgba(16, 185, 129, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .heart-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    h1 {
+        font-size: 56px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    
+    .trust-badge {
+        padding: 16px 32px;
+        gap: 20px;
+    }
+    
+    .badge-number {
+        font-size: 24px;
+    }
+    
+    .badge-stars {
+        font-size: 20px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .download-btn {
+        font-size: 17px;
+        padding: 18px 36px;
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .trust-indicators {
+        gap: 16px;
+    }
+    
+    .indicator {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .heart-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    h1 {
+        font-size: 42px;
+    }
+    
+    .brand-underline {
+        width: 80px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .subtitle-divider {
+        display: none;
+    }
+    
+    .trust-badge {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 24px;
+    }
+    
+    .badge-divider {
+        width: 60px;
+        height: 2px;
+    }
+    
+    .trust-indicators {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .live-users {
+        font-size: 13px;
+        padding: 12px 20px;
+    }
+}
